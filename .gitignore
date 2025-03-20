@@ -22,4 +22,10 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+<<<<<<< HEAD
 /EG15/target/
+=======
+/E11Switch/target/
+/E12DoWhile/target/
+/E13MenuMejorado/target/
+>>>>>>> 1b35472daf5af55db0cce06c3a724b0e02ce744c
