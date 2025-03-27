@@ -33,7 +33,6 @@ public class E17MenuEstadistica {
         int intentosFallidos = 0;
         do {
             usuario = JOptionPane.showInputDialog(null, "Usuario", "Validar Usuario ", 0, iconoUsuario, null, null).toString();
-
             //Pasamos como parámetro el objeto passwordOculto
             JOptionPane.showConfirmDialog(null, passwordOculto, "Password", JOptionPane.OK_CANCEL_OPTION, 0, iconoPassword);
             //Obtenemos la contraseña introducida guardada en el objeto passwordOculto
