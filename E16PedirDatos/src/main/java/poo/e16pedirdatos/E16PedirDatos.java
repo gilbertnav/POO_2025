@@ -32,5 +32,6 @@ public class E16PedirDatos {
             mensaje.append(nombre[i]).append("      ").append(estatura[i]).append("\n");
         }
         JOptionPane.showMessageDialog(null, mensaje, "Reporte", 0, iconoReporte);
+        
     }
 }
