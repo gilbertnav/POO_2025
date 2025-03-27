@@ -20,11 +20,8 @@ public class E16PedirDatos {
         estatura = new float[10];
         //Pedir nombres  (i+1)   i= i+1
         for (int i = 0; i < 10; i++) {
-
-
            nombre[i]=JOptionPane.showInputDialog(null, "Nombre " , "Registro " + (i+1), 0, iconoUsuario, null, null).toString();
            estatura[i] = Float.parseFloat(JOptionPane.showInputDialog(null, "Estatura de " + nombre[i], "Registro " + (i+1), 0, iconoEstatura, null, null).toString());
-
         }
         //Visualizar los nombres
         StringBuilder mensaje = new StringBuilder();
