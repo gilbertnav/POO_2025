@@ -8,8 +8,9 @@ public class E17MenuEstadistica {
 
     private static String[] nombre;
     private static float[] estatura;
-    private static ImageIcon iconoUsuario,iconoPassword,iconoError,iconoSesionDenegada;
-    private static ImageIcon iconoRegistrar, iconoEstatura, iconoReporte,iconoMenu;
+    private static ImageIcon iconoUsuario, iconoPassword, iconoError, iconoSesionDenegada;
+    private static ImageIcon iconoRegistrar, iconoEstatura, iconoReporte, iconoMenu;
+
     public static void main(String[] args) {
         inicializarSistema();
         //Constantes validas para el inicion de sesión
@@ -18,7 +19,7 @@ public class E17MenuEstadistica {
         //Declaracion de las variables
         String usuario;
         String password;
-       
+
         //Objeto para enmascarar la contraseña
         JPasswordField passwordOculto = new JPasswordField();
         //Pedir datos de entrada
@@ -69,8 +70,8 @@ public class E17MenuEstadistica {
                         }
                         JOptionPane.showMessageDialog(null, mensaje, "Reporte", 0, iconoReporte);
                         break;
-                    case 3: break;
-                    
+                    case 3:
+                        break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opcion no válida", "Error", 0, iconoError);
                 }
@@ -80,19 +81,20 @@ public class E17MenuEstadistica {
             JOptionPane.showMessageDialog(null, "Intentos agotados", "Sesión denegada", 0, iconoSesionDenegada);
         }
     }
+
     //Metod que no devuelve valor y no necesita paràmetro
-    private static void inicializarSistema(){
-         String path="src/main/java/imagenes/";
-         iconoUsuario = new ImageIcon(path+"usuario.png");
-         iconoPassword = new ImageIcon(path+ "password.png");
-         iconoError = new ImageIcon(path+"error.png");
-         iconoSesionDenegada = new ImageIcon(path+"denegado.png");
-         iconoRegistrar = new ImageIcon(path+"registrar.png");
-         iconoEstatura = new ImageIcon(path+"estatura.png");
-         iconoReporte = new ImageIcon(path+"reporte.png");
-         iconoMenu = new ImageIcon(path+"menuPrincipal.png");
-         nombre = new String[10];
+    private static void inicializarSistema() {
+        String path = "src/main/java/imagenes/";
+        iconoUsuario = new ImageIcon(path + "usuario.png");
+        iconoPassword = new ImageIcon(path + "password.png");
+        iconoError = new ImageIcon(path + "error.png");
+        iconoSesionDenegada = new ImageIcon(path + "denegado.png");
+        iconoRegistrar = new ImageIcon(path + "registrar.png");
+        iconoEstatura = new ImageIcon(path + "estatura.png");
+        iconoReporte = new ImageIcon(path + "reporte.png");
+        iconoMenu = new ImageIcon(path + "menuPrincipal.png");
+        nombre = new String[10];
         estatura = new float[10];
     }
-            
+
 }
