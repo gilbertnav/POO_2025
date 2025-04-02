@@ -31,9 +31,11 @@ public class E17MenuEstadistica {
             do {
                 opcion = Integer.parseInt(JOptionPane.showInputDialog(null, menu, "Sesión activa: " + usuario, 0, iconoMenu, null, null).toString());
                 switch (opcion) {
-                    case 1:registrarDatos();
+                    case 1:
+                        registrarDatos();
                         break;
-                    case 2:mostrarReporte();
+                    case 2:
+                        mostrarReporte();
                         break;
                     case 3:
                         break;
@@ -105,7 +107,14 @@ public class E17MenuEstadistica {
         }
         JOptionPane.showMessageDialog(null, mensaje, "Reporte", 0, iconoReporte);
     }
-    
-   
-    
+
+    public static boolean esNumero(String valor) {
+        long numero;
+        try {
+            numero = Long.parseLong(valor);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
