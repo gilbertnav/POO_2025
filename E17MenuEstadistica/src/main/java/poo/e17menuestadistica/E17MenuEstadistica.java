@@ -6,6 +6,8 @@ import javax.swing.JPasswordField;
 
 public class E17MenuEstadistica {
 
+    //Controla el numero de registros del arreglo
+    private static int pos;
     private static String usuario;
     private static String[] nombre;
     private static float[] estatura;
@@ -29,7 +31,18 @@ public class E17MenuEstadistica {
                              """;
             int opcion;
             do {
-                opcion = Integer.parseInt(JOptionPane.showInputDialog(null, menu, "Sesión activa: " + usuario, 0, iconoMenu, null, null).toString());
+                boolean esNumValido;
+                String valor;
+
+                do {
+                    valor = JOptionPane.showInputDialog(null, menu, "Sesión activa: " + usuario, 0, iconoMenu, null, null).toString();
+                    esNumValido = esNumero(valor);
+                    if (!esNumValido) {
+                        JOptionPane.showMessageDialog(null, "Opcion no valida");
+                    }
+                } while (!esNumValido);
+                opcion = Integer.parseInt(valor);
+
                 switch (opcion) {
                     case 1:
                         registrarDatos();
@@ -61,6 +74,7 @@ public class E17MenuEstadistica {
         iconoMenu = new ImageIcon(path + "menuPrincipal.png");
         nombre = new String[10];
         estatura = new float[10];
+        pos = -1;
     }
 
     private static boolean validarUsuario() {
@@ -94,18 +108,32 @@ public class E17MenuEstadistica {
     }
 
     private static void registrarDatos() {
-        for (int i = 0; i < 10; i++) {
-            nombre[i] = JOptionPane.showInputDialog(null, "Nombre ", "Registro " + (i + 1), 0, iconoUsuario, null, null).toString();
-            estatura[i] = Float.parseFloat(JOptionPane.showInputDialog(null, "Estatura de " + nombre[i], "Registro " + (i + 1), 0, iconoEstatura, null, null).toString());
+        
+        pos++;
+        if (pos>9) {
+            pos--;
+            JOptionPane.showMessageDialog(null, "Arreglo lleno");
+        }else{
+            nombre[pos] = JOptionPane.showInputDialog(null, "Nombre ", "Registro " + (pos + 1), 0, iconoUsuario, null, null).toString();
+            estatura[pos] = Float.parseFloat(JOptionPane.showInputDialog(null, "Estatura de " + nombre[pos], "Registro " + (pos + 1), 0, iconoEstatura, null, null).toString());
+            JOptionPane.showMessageDialog(null, "Registro agregado");
         }
+        
+        
+        
     }
 
     private static void mostrarReporte() {
-        StringBuilder mensaje = new StringBuilder();
-        for (int i = 0; i < 10; i++) {
-            mensaje.append(nombre[i]).append("      ").append(estatura[i]).append("\n");
+        if (pos >= 0) {
+            StringBuilder mensaje = new StringBuilder();
+            for (int i = 0; i <= pos; i++) {
+                mensaje.append(nombre[i]).append("      ").append(estatura[i]).append("\n");
+            }
+            JOptionPane.showMessageDialog(null, mensaje, "Reporte", 0, iconoReporte);
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay registros");
         }
-        JOptionPane.showMessageDialog(null, mensaje, "Reporte", 0, iconoReporte);
+
     }
 
     public static boolean esNumero(String valor) {

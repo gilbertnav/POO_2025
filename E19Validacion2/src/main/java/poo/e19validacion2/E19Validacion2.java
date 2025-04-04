@@ -15,6 +15,7 @@ public class E19Validacion2 {
                 JOptionPane.showMessageDialog(null, "Edad no valida");
             }
         }while(!esNumValido);
+        edad = Byte.parseByte(valor);
     }
 
     public static boolean esNumero(String valor) {
