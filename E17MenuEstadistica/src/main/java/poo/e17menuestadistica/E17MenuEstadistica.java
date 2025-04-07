@@ -3,11 +3,8 @@ package poo.e17menuestadistica;
 import javax.swing.JOptionPane;
 
 public class E17MenuEstadistica {
-
-   
   
     public static void main(String[] args) {
-      
         Paciente.inicializarSistema();
         boolean esUsuarioValido = Paciente.validarUsuario();
         //Si el usuario es válido damos la bienvenida y mostramos el menú

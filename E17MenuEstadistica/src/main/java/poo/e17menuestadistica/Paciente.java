@@ -6,10 +6,10 @@ import javax.swing.JPasswordField;
 
 public class Paciente {
     //Controla el numero de registros del arreglo
-    private static int pos;
     public static String usuario;
     private static String[] nombre;
     private static float[] estatura;
+     private static int pos;
     public static ImageIcon  iconoUsuario,iconoPassword, iconoError, iconoSesionDenegada, iconoBuscar;
     public static ImageIcon iconoRegistrar, iconoEstatura, iconoReporte, iconoMenu, iconoInformacion, iconoPregunta;
     
