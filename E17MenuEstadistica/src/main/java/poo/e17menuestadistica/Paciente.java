@@ -1,16 +1,13 @@
 package poo.e17menuestadistica;
-
 import javax.swing.JOptionPane;
 
 public class Paciente {
-
     //Controla el numero de registros del arreglo
     public static String[] nombre;
     public static float[] estatura;
     public static int pos;
     private static String pacienteBuscado;
     private static int posEnc;
-
     public static void registrarDatos() {
         int resp = 0;
         do {

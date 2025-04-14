@@ -1,15 +1,11 @@
-
 package poo.e17menuestadistica;
-
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
-
 public class Sistema {
     public static String usuario;
     public static ImageIcon  iconoUsuario,iconoPassword, iconoError, iconoSesionDenegada, iconoBuscar, iconoOk;
     public static ImageIcon iconoRegistrar, iconoEstatura, iconoReporte, iconoMenu, iconoInformacion, iconoPregunta;
-    
      //Metodo que no devuelve valor y no necesita paràmetro
     public static void inicializarSistema() {
         String path = "src/main/java/imagenes/";
@@ -25,7 +21,6 @@ public class Sistema {
         iconoReporte = new ImageIcon(path + "reporte.png");
         iconoMenu = new ImageIcon(path + "menuPrincipal.png");
         iconoOk = new ImageIcon(path + "ok.png");
-
         Paciente.nombre = new String[10];
         Paciente.estatura = new float[10];
         Paciente.pos = -1;

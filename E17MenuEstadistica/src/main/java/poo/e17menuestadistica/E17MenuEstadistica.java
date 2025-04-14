@@ -1,9 +1,6 @@
 package poo.e17menuestadistica;
-
 import javax.swing.JOptionPane;
-
 public class E17MenuEstadistica {
-
     public static void main(String[] args) {
         Sistema.inicializarSistema();
         boolean esUsuarioValido = Sistema.validarUsuario();
@@ -11,16 +8,17 @@ public class E17MenuEstadistica {
         if (esUsuarioValido) {
             JOptionPane.showMessageDialog(null, "Bienvenido al sistema: " + Sistema.usuario, "Sistema estadísico", 0, Sistema.iconoUsuario);
             String menu = """
-                             Menu de opciones
+                            Menu de opciones
+                          
+                            [1] Registrar 
+                            [2] Consulta Individual
+                            [3] Modificacion
+                            [4] Reporte
+                            [5] Salir
                              
-                             [1] Registrar
-                             [2] Consulta Individual
-                             [3] Modificacion
-                             [4] Reporte
-                             [5] Salir
+                            Elige una opción""";
+                                            
                              
-                             Elige una opción
-                             """;
             int opcion;
             //Se saldrá del menú hasta que se elija la opción 5
             do {
