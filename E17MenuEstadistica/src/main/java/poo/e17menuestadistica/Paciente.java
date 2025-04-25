@@ -1,80 +1,25 @@
 package poo.e17menuestadistica;
-
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 
 public class Paciente {
     //Controla el numero de registros del arreglo
-    public static String usuario;
-    private static String[] nombre;
-    private static float[] estatura;
-     private static int pos;
-    public static ImageIcon  iconoUsuario,iconoPassword, iconoError, iconoSesionDenegada, iconoBuscar;
-    public static ImageIcon iconoRegistrar, iconoEstatura, iconoReporte, iconoMenu, iconoInformacion, iconoPregunta;
-    
-     //Metodo que no devuelve valor y no necesita paràmetro
-    public static void inicializarSistema() {
-        String path = "src/main/java/imagenes/";
-        iconoBuscar = new ImageIcon(path + "buscar.png");
-        iconoInformacion = new ImageIcon(path + "informacion.png");
-        iconoPregunta = new ImageIcon(path + "pregunta.png");
-        iconoUsuario = new ImageIcon(path + "usuario.png");
-        iconoPassword = new ImageIcon(path + "password.png");
-        iconoError = new ImageIcon(path + "error.png");
-        iconoSesionDenegada = new ImageIcon(path + "denegado.png");
-        iconoRegistrar = new ImageIcon(path + "registrar.png");
-        iconoEstatura = new ImageIcon(path + "estatura.png");
-        iconoReporte = new ImageIcon(path + "reporte.png");
-        iconoMenu = new ImageIcon(path + "menuPrincipal.png");
-
-        nombre = new String[10];
-        estatura = new float[10];
-        pos = -1;
-    }
-
-    public static boolean validarUsuario() {
-        //Constantes validas para el inicion de sesión
-        final String USUARIO_VALIDO = "Gilberto";
-        final String PASSWORD_VALIDO = "789";
-        //Declaracion de las variables
-        String password;
-        //Objeto para enmascarar la contraseña
-        JPasswordField passwordOculto = new JPasswordField();
-        //Pedir datos de entrada
-        boolean esUsuarioValido = false;
-        int intentosFallidos = 0;
-        do {
-            usuario = JOptionPane.showInputDialog(null, "Usuario", "Validar Usuario ", 0, iconoUsuario, null, null).toString();
-            //Pasamos como parámetro el objeto passwordOculto
-            JOptionPane.showConfirmDialog(null, passwordOculto, "Password", JOptionPane.OK_CANCEL_OPTION, 0, iconoPassword);
-            //Obtenemos la contraseña introducida guardada en el objeto passwordOculto
-            password = new String(passwordOculto.getPassword());
-            //Limpiar la passwordOculto
-            passwordOculto.setText("");
-            if (usuario.equalsIgnoreCase(USUARIO_VALIDO)
-                    && password.equalsIgnoreCase(PASSWORD_VALIDO)) {
-                esUsuarioValido = true;
-            } else {
-                intentosFallidos++;
-                JOptionPane.showMessageDialog(null, "Usuario o password incorrecto", "Error", 0, iconoError);
-            }
-        } while (!esUsuarioValido && intentosFallidos < 3);
-        return esUsuarioValido;
-    }
-
+    public static String[] nombre;
+    public static float[] estatura;
+    public static int pos;
+    private static String pacienteBuscado;
+    private static int posEnc;
     public static void registrarDatos() {
-        int resp=0;
+        int resp = 0;
         do {
             pos++;
             if (pos > 9) {
                 pos--;
                 JOptionPane.showMessageDialog(null, "Arreglo lleno");
             } else {
-                nombre[pos] = JOptionPane.showInputDialog(null, "Nombre ", "Registro " + (pos + 1), 0, iconoUsuario, null, null).toString();
-                estatura[pos] = Float.parseFloat(JOptionPane.showInputDialog(null, "Estatura de " + nombre[pos], "Registro " + (pos + 1), 0, iconoEstatura, null, null).toString());
+                nombre[pos] = JOptionPane.showInputDialog(null, "Nombre ", "Registro " + (pos + 1), 0, Sistema.iconoUsuario, null, null).toString();
+                estatura[pos] = Float.parseFloat(JOptionPane.showInputDialog(null, "Estatura de " + nombre[pos], "Registro " + (pos + 1), 0, Sistema.iconoEstatura, null, null).toString());
                 //JOptionPane.showMessageDialog(null, "Registro agregado");
-                resp = JOptionPane.showConfirmDialog(null, "¿Agregar otro registro?","Registro realizado...", JOptionPane.OK_CANCEL_OPTION, 0, iconoPregunta);
+                resp = JOptionPane.showConfirmDialog(null, "¿Agregar otro registro?", "Registro realizado...", JOptionPane.OK_CANCEL_OPTION, 0, Sistema.iconoPregunta);
                 // JOptionPane.showMessageDialog(null, resp);
             }
         } while (resp == 0);
@@ -86,31 +31,84 @@ public class Paciente {
             for (int i = 0; i <= pos; i++) {
                 mensaje.append(nombre[i]).append("      ").append(estatura[i]).append("\n");
             }
-            JOptionPane.showMessageDialog(null, mensaje, "Reporte", 0, iconoReporte);
+            JOptionPane.showMessageDialog(null, mensaje, "Reporte", 0, Sistema.iconoReporte);
         } else {
-            JOptionPane.showMessageDialog(null, "No hay registros");
-        }
-
-    }
-
-    public static boolean esNumero(String valor) {
-        //  long numero;
-        try {
-            Long.valueOf(valor);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
+            JOptionPane.showMessageDialog(null, "No hay registros a mostrar", "Error", 0, Sistema.iconoError);
         }
     }
-    
-    private int buscarNombre(String nombreBuscado){
+
+    private static int buscarNombre(String paciente) {
         //Almacena la posición del nombre buscado
         int posEnc = -1;
         for (int i = 0; i <= pos; i++) {
-            if (nombreBuscado.equalsIgnoreCase(nombre[i])) {
+            if (paciente.equalsIgnoreCase(nombre[i])) {
                 posEnc = i;
             }
         }
         return posEnc;
     }
+
+    public static void consultaIndividual() {
+        if (pos >= 0) {
+            pacienteBuscado = JOptionPane.showInputDialog(null, "Nombre del paciente ", "Consulta Individual ", 0, Sistema.iconoBuscar, null, null).toString();
+            posEnc = buscarNombre(pacienteBuscado);
+            if (posEnc != -1) {
+                StringBuilder mensaje = new StringBuilder();
+                mensaje.append(nombre[posEnc]).append("      ").append(estatura[posEnc]).append("\n");
+                JOptionPane.showMessageDialog(null, mensaje, "Paciente encontrado", 0, Sistema.iconoReporte);
+            } else {
+                JOptionPane.showMessageDialog(null, "Paciente no encontrado", "Error", 0, Sistema.iconoError);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay registros a mostrar", "Error", 0, Sistema.iconoError);
+        }
+    }
+
+    public static void modificar() {
+        if (pos >= 0) {
+            pacienteBuscado = JOptionPane.showInputDialog(null, "Nombre del paciente ", "Modificar paciente ", 0, Sistema.iconoBuscar, null, null).toString();
+            posEnc = buscarNombre(pacienteBuscado);
+            if (posEnc != -1) {
+                StringBuilder menu = new StringBuilder();
+                int opc;
+                String valor;
+                boolean esNumValido;
+                do {
+                    //Limpia el menú con los datos cada vez que se repie el do-while
+                    menu.delete(0, menu.capacity());
+                    menu.append("Menu de modificacines\n\n");
+                    //Muestra el nombre y estatura que se desea modificar
+                    menu.append("1. Nombre: ").append(nombre[posEnc]).append("\n");
+                    menu.append("2. Estatura: ").append(estatura[posEnc]).append("\n");
+                    menu.append("3. Salir ").append("\n\n");
+                    menu.append("Elige una opción...");
+                    //Permite validar al usuario
+                    do {
+                        valor = JOptionPane.showInputDialog(null, menu, "Sesión activa: " + Sistema.usuario, 0, Sistema.iconoMenu, null, null).toString();
+                        esNumValido = Sistema.esNumero(valor);
+                        if (!esNumValido) {
+                            JOptionPane.showMessageDialog(null, "Opción no válida", "Error", 0, Sistema.iconoError);
+                        }
+                    } while (!esNumValido);
+                    opc = Integer.parseInt(valor);
+                    switch (opc) {
+                        case 1:
+                            nombre[posEnc] = JOptionPane.showInputDialog(null, "Nuevo nombre:", "Nombre actual: " + nombre[posEnc], 0, Sistema.iconoUsuario, null, null).toString();
+                            JOptionPane.showMessageDialog(null, "Nombre cambiado con exito", "Modificación exitosa", 0, Sistema.iconoOk);
+                            break;
+                        case 2:
+                            estatura[posEnc] = Float.parseFloat(JOptionPane.showInputDialog(null, "Nueva estatura ", "Estatura actual de: " + nombre[posEnc], 0, Sistema.iconoEstatura, null, null).toString());
+                            JOptionPane.showMessageDialog(null, "Estatura cambiada con exito", "Modificación exitosa", 0, Sistema.iconoOk);
+                            break;
+                        case 3:
+                    }
+                } while (opc != 3);
+            } else {
+                JOptionPane.showMessageDialog(null, "Paciente no encontrado", "Error", 0, Sistema.iconoError);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay registros a mostrar", "Error", 0, Sistema.iconoError);
+        }
+    }
+
 }
