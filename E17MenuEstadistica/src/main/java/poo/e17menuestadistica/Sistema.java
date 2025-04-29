@@ -7,7 +7,7 @@ public class Sistema {
     public static ImageIcon  iconoUsuario,iconoPassword, iconoError, iconoSesionDenegada, iconoBuscar, iconoOk;
     public static ImageIcon iconoRegistrar, iconoEstatura, iconoReporte, iconoMenu, iconoInformacion, iconoPregunta;
      //Metodo que no devuelve valor y no necesita paràmetro
-    public static void inicializarSistema() {
+    public  static void inicializarSistema() {
         String path = "src/main/java/imagenes/";
         iconoBuscar = new ImageIcon(path + "buscar.png");
         iconoInformacion = new ImageIcon(path + "informacion.png");
