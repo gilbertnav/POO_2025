@@ -6,8 +6,6 @@ public class E20EstadisticaObj {
 
     public static void main(String[] args) {
        OperacionesPaciente opPaciente = new OperacionesPaciente();
-//       opPaciente.crearExpediente();
-//       opPaciente.consultarPaciente();
         String menu = """
                       [1] Crear expediente
                       [2] Mostrar paciente
