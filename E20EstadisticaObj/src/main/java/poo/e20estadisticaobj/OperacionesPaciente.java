@@ -3,8 +3,13 @@ package poo.e20estadisticaobj;
 import javax.swing.JOptionPane;
 
 public class OperacionesPaciente {
+
+    
+    //Almacena la posicion de los pacientes dentro del arreglo
+    private int pos;
     //Declaración del objeto
     private Paciente paciente;
+    private Paciente[] arregloPacientes;
     private int expediente;
     private String nombre;
     private String apPaterno;
@@ -14,7 +19,14 @@ public class OperacionesPaciente {
     private float peso;
     private char sexo;
     
-    public void crearExpediente(){
+    //Constructor de la clase
+    public OperacionesPaciente() {
+        arregloPacientes = new Paciente[20];
+        //-1 indica que no hay pacientes en el arreglo
+        pos = -1;
+    }
+
+    public void crearExpediente() {
         paciente = new Paciente();
         //Guardar valores en variables locales
         expediente = Integer.parseInt(JOptionPane.showInputDialog("Expediente"));
@@ -23,9 +35,9 @@ public class OperacionesPaciente {
         apMaterno = JOptionPane.showInputDialog("Apellido Materno");
         edad = Integer.parseInt(JOptionPane.showInputDialog("Edad"));
         estatura = Float.parseFloat(JOptionPane.showInputDialog("Estatura"));
-        peso = Float.parseFloat(JOptionPane.showInputDialog("Estatura"));
-        sexo = JOptionPane.showInputDialog("Estatura").charAt(0);
-        
+        peso = Float.parseFloat(JOptionPane.showInputDialog("Peso"));
+        sexo = JOptionPane.showInputDialog("Sexo").charAt(0);
+
         //Guardar valores en el objeto
         paciente.setExpediente(expediente);
         paciente.setNombre(nombre);
@@ -35,23 +47,28 @@ public class OperacionesPaciente {
         paciente.setEstatura(estatura);
         paciente.setPeso(peso);
         paciente.setSexo(sexo);
-        
+        //Aumentamos en 1 el valor de pos
+        pos++;
+        //Guardamos el objeto en el arreglo
+        arregloPacientes[pos] = paciente;
         JOptionPane.showMessageDialog(null, "Expediente generado exitosamente");
     }
-    
-    public void consultarPaciente(){
+
+    public void consultarPaciente() {
         StringBuilder mensaje = new StringBuilder();
-        mensaje.append("No de Expediente: ").append(paciente.getExpediente()).append("\n");
-        mensaje.append("N o m b r e     : ").append(paciente.getNombre()).append("\n");
-        mensaje.append("Apellido Paterno: ").append(paciente.getApPaterno()).append("\n");
-        mensaje.append("Apellido Materno: ").append(paciente.getApMaterno()).append("\n");
-        mensaje.append("E  d  a  d      : ").append(paciente.getEdad()).append("\n");
-        mensaje.append("E s t a t u r a : ").append(paciente.getEstatura()).append("\n");
-        mensaje.append("P  e  s  o      : ").append(paciente.getPeso()).append("\n");
-        mensaje.append("S  e  x  o      : ").append(paciente.getSexo()).append("\n");
+        for (int i=0; i<=pos; i++) {
+            mensaje.append("No de Expediente: ").append(arregloPacientes[i].getExpediente()).append("\n");
+            mensaje.append("N o m b r e     : ").append(arregloPacientes[i].getNombre()).append("\n");
+            mensaje.append("Apellido Paterno: ").append(arregloPacientes[i].getApPaterno()).append("\n");
+            mensaje.append("Apellido Materno: ").append(arregloPacientes[i].getApMaterno()).append("\n");
+            mensaje.append("E  d  a  d      : ").append(arregloPacientes[i].getEdad()).append("\n");
+            mensaje.append("E s t a t u r a : ").append(arregloPacientes[i].getEstatura()).append("\n");
+            mensaje.append("P  e  s  o      : ").append(arregloPacientes[i].getPeso()).append("\n");
+            mensaje.append("S  e  x  o      : ").append(arregloPacientes[i].getSexo()).append("\n");
+            mensaje.append("----------------------------------------------"); 
+        }
+
         JOptionPane.showMessageDialog(null, mensaje);
     }
-           
-    
+
 }
- 
