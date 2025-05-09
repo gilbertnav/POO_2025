@@ -8,8 +8,9 @@ public class E20EstadisticaObj {
        OperacionesPaciente opPaciente = new OperacionesPaciente();
         String menu = """
                       [1] Crear expediente
-                      [2] Mostrar paciente
-                      [3] Salir
+                      [2] Mostrar pacientes
+                      [3] consulta individual
+                      [4] Salir
                       
                       Elige una opción
                       """;
@@ -21,7 +22,9 @@ public class E20EstadisticaObj {
                     break;
                 case 2:opPaciente.consultarPaciente();
                     break;
+                case 3:opPaciente.consultaIndividual();
+                    break;
             }
-        } while (opcion != 3);
+        } while (opcion != 4);
     }
 }

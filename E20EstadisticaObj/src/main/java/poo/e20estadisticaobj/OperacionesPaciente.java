@@ -3,8 +3,6 @@ package poo.e20estadisticaobj;
 import javax.swing.JOptionPane;
 
 public class OperacionesPaciente {
-
-    
     //Almacena la posicion de los pacientes dentro del arreglo
     private int pos;
     //Declaración del objeto
@@ -27,9 +25,17 @@ public class OperacionesPaciente {
     }
 
     public void crearExpediente() {
+        expediente = Integer.parseInt(JOptionPane.showInputDialog("Expediente"));
+        int posEnc;
+        posEnc = buscarPaciente(expediente);
+        if (posEnc == -1) {
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "El expediente ya existe");
+        }
         paciente = new Paciente();
         //Guardar valores en variables locales
-        expediente = Integer.parseInt(JOptionPane.showInputDialog("Expediente"));
+        
         nombre = JOptionPane.showInputDialog("Nombre");
         apPaterno = JOptionPane.showInputDialog("Apellido Paterno");
         apMaterno = JOptionPane.showInputDialog("Apellido Materno");
@@ -70,5 +76,35 @@ public class OperacionesPaciente {
 
         JOptionPane.showMessageDialog(null, mensaje);
     }
-
+    
+    private int buscarPaciente(int expediente){
+        //Posición donde encuentre el expediente en el arreglo
+        int posEnc=-1;
+        for (int i = 0; i <= pos; i++) {
+            if (arregloPacientes[i].getExpediente()==expediente) {
+                posEnc = i;
+            }
+        }
+        return posEnc;
+    }
+    
+    public void consultaIndividual(){
+         expediente = Integer.parseInt(JOptionPane.showInputDialog("Expediente"));
+        int posEnc;
+        posEnc = buscarPaciente(expediente);
+        if (posEnc != -1) {
+            StringBuilder mensaje = new StringBuilder();
+            mensaje.append("No de Expediente: ").append(arregloPacientes[posEnc].getExpediente()).append("\n");
+            mensaje.append("N o m b r e     : ").append(arregloPacientes[posEnc].getNombre()).append("\n");
+            mensaje.append("Apellido Paterno: ").append(arregloPacientes[posEnc].getApPaterno()).append("\n");
+            mensaje.append("Apellido Materno: ").append(arregloPacientes[posEnc].getApMaterno()).append("\n");
+            mensaje.append("E  d  a  d      : ").append(arregloPacientes[posEnc].getEdad()).append("\n");
+            mensaje.append("E s t a t u r a : ").append(arregloPacientes[posEnc].getEstatura()).append("\n");
+            mensaje.append("P  e  s  o      : ").append(arregloPacientes[posEnc].getPeso()).append("\n");
+            mensaje.append("S  e  x  o      : ").append(arregloPacientes[posEnc].getSexo()).append("\n");
+            JOptionPane.showMessageDialog(null, mensaje);
+        }else{
+            JOptionPane.showMessageDialog(null, "El expediente no existe");
+        }
+    }
 }
