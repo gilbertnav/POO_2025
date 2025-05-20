@@ -2,6 +2,9 @@
 package poo.e20estadisticaobj;
 
 public class Paciente {
+    public Paciente(){
+        eliminado = false;
+    }
     private int expediente;
     private String nombre;
     private String apPaterno;
@@ -10,6 +13,7 @@ public class Paciente {
     private float estatura;
     private float peso;
     private char sexo;
+    private boolean eliminado;
 
     /**
      * @return the expediente
@@ -122,5 +126,21 @@ public class Paciente {
     public void setSexo(char sexo) {
         this.sexo = sexo;
     }
+
+    /**
+     * @return the eliminado
+     */
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    /**
+     * @param eliminado the eliminado to set
+     */
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
+    }
+
+
    
 }

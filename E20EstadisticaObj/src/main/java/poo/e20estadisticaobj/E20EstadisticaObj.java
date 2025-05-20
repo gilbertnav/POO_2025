@@ -9,8 +9,12 @@ public class E20EstadisticaObj {
         String menu = """
                       [1] Crear expediente
                       [2] Mostrar pacientes
-                      [3] consulta individual
-                      [4] Salir
+                      [3] Consulta individual
+                      [4] Modificar paciente
+                      [5] Baja temporal
+                      [6] Restaurar expediente
+                      [7] Eliminar expediente
+                      [8] Salir
                       
                       Elige una opción
                       """;
@@ -24,7 +28,15 @@ public class E20EstadisticaObj {
                     break;
                 case 3:opPaciente.consultaIndividual();
                     break;
+                case 4: opPaciente.modificarPaciente();
+                    break;
+                case 5: opPaciente.bajaTemporal();
+                    break;
+                case 6: opPaciente.restaurarExpediente();
+                    break;
+                case 7: opPaciente.eliminarExpediente();
+                    break;
             }
-        } while (opcion != 4);
+        } while (opcion != 8);
     }
 }
