@@ -14,7 +14,9 @@ public class E20EstadisticaObj {
                       [5] Baja temporal
                       [6] Restaurar expediente
                       [7] Eliminar expediente
-                      [8] Salir
+                      [7] Eliminar expediente
+                      [8] Limpiar expedientes
+                      [9] Salir
                       
                       Elige una opción
                       """;
@@ -36,7 +38,9 @@ public class E20EstadisticaObj {
                     break;
                 case 7: opPaciente.eliminarExpediente();
                     break;
+                case 8: opPaciente.limpiarExpedientes();
+                    break;
             }
-        } while (opcion != 8);
+        } while (opcion != 9);
     }
 }

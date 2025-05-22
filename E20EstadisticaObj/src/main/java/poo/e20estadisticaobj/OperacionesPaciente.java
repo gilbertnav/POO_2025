@@ -210,11 +210,42 @@ public class OperacionesPaciente {
                 arregloPacientes[posEnc] = null;
                 pos--;
             }else{
-                
+                for (int i = posEnc+1; i <=pos; i++) {
+                    arregloPacientes[i-1]=arregloPacientes[i];
+                }
+                arregloPacientes[pos] = null;
+                pos--;
             }
             JOptionPane.showMessageDialog(null, "Expediente eliminado");
         }else{
             JOptionPane.showMessageDialog(null, "Expediente no encontrado");
         }
+    }
+    //Elimina los expedientes con baja temporal
+    public void limpiarExpedientes(){
+      
+        int noEliminados=0;
+        //Cuenta cuantos registros no están eliminados
+        for (int i = 0; i <=pos; i++) {
+            if (!arregloPacientes[i].isEliminado()) {
+                noEliminados++;
+            }
+        }
+        //Creamos un arreglo auxiliar para los registros
+        //que no esté eliminados
+        Paciente[] arregloAux = new Paciente[noEliminados];
+        int indice=0;
+        for (int i = 0; i <=pos; i++) {
+            //Si el registro no está eliminado lo guardamos
+            //en el arreglo auxiliar
+            if (!arregloPacientes[i].isEliminado()) {
+               arregloAux[indice++] = arregloPacientes[i];
+            }
+        }
+        //Vaciamos el arregloAux en el arreglo original
+        arregloPacientes = arregloAux;
+        //modificamos el valor de pos de acuerdo el numero de
+        //registros que no estén eliminados.
+        pos =noEliminados -1;
     }
 }
