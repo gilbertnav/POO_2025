@@ -1,14 +1,17 @@
-package poo.e20estadisticaobj;
+package poo.e20estadisticaArchivo;
 
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
-public class OperacionesPaciente {
+public class OpPaciente {
 
     //Almacena la posicion de los pacientes dentro del arreglo
-    private int pos;
+    public static int pos = -1;
     //Declaración del objeto
     private Paciente paciente;
-    private Paciente[] arregloPacientes;
+    //Para poder accederlo desde cualquier clase
+    //se comporta como una variable global del sistema
+    public static Paciente[] arregloPacientes = new Paciente[20];
     private int expediente;
     private String nombre;
     private String apPaterno;
@@ -18,14 +21,7 @@ public class OperacionesPaciente {
     private float peso;
     private char sexo;
 
-    //Constructor de la clase
-    public OperacionesPaciente() {
-        arregloPacientes = new Paciente[20];
-        //-1 indica que no hay pacientes en el arreglo
-        pos = -1;
-    }
-
-    public void crearExpediente() {
+    public void crearExpediente() throws IOException {
         expediente = Integer.parseInt(JOptionPane.showInputDialog("Expediente"));
         int posEnc;
         posEnc = buscarPaciente(expediente);
@@ -54,6 +50,8 @@ public class OperacionesPaciente {
             pos++;
             //Guardamos el objeto en el arreglo
             arregloPacientes[pos] = paciente;
+            //Guardando el arreglo en el archivo
+            OpArchivo.guardarExpediente();
             JOptionPane.showMessageDialog(null, "Expediente generado exitosamente");
         } else {
             JOptionPane.showMessageDialog(null, "El expediente ya existe");
